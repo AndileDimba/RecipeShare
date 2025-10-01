@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>RecipeShare.Api</name>
+    </assembly>
+    <members>
+        <member name="M:RecipeShare.Api.Controllers.RecipesController.GetAll(System.String)">
+            <summary>
+            Return the list of recipes. Optionally filter by a dietary tag (e.g. "vegan").
+            </summary>
+            <param name="tag">Optional dietary tag to filter results.</param>
+            <returns>List of matching recipes.</returns>
+        </member>
+        <member name="M:RecipeShare.Api.Controllers.RecipesController.Get(System.Int32)">
+            <summary>
+            Get a single recipe by id.
+            </summary>
+            <param name="id">Recipe id.</param>
+            <returns>The requested recipe or 404 if not found.</returns>
+        </member>
+        <member name="M:RecipeShare.Api.Controllers.RecipesController.Post(RecipeShare.Api.Models.Recipe)">
+            <summary>
+            Create a new recipe. The server assigns the Id.
+            </summary>
+            <param name="recipe">Recipe payload (omit Id).</param>
+            <returns>Created recipe with assigned Id.</returns>
+        </member>
+        <member name="M:RecipeShare.Api.Controllers.RecipesController.Put(System.Int32,RecipeShare.Api.Models.Recipe)">
+            <summary>
+            Update an existing recipe. Id in the URL must match the Id in the body.
+            </summary>
+            <param name="id">Id of the recipe to update.</param>
+            <param name="recipe">Updated recipe payload.</param>
+            <returns>No content on success, 404 if the recipe doesn't exist.</returns>
+        </member>
+        <member name="M:RecipeShare.Api.Controllers.RecipesController.Delete(System.Int32)">
+            <summary>
+            Remove a recipe by id.
+            </summary>
+            <param name="id">Id of the recipe to delete.</param>
+            <returns>No content on success, 404 if not found.</returns>
+        </member>
+        <member name="T:RecipeShare.Api.Migrations.InitialCreate">
+            <inheritdoc />
+        </member>
+        <member name="M:RecipeShare.Api.Migrations.InitialCreate.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:RecipeShare.Api.Migrations.InitialCreate.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:RecipeShare.Api.Migrations.InitialCreate.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+    </members>
+</doc>
