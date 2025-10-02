@@ -1,0 +1,64 @@
+## Ignore Visual Studio / .NET Core temporary files
+**/bin/
+**/obj/
+**/[Pp]ackages/*
+!**/packages/build/
+**/*.user
+**/*.suo
+**/*.sln.docstates
+**/*.cache
+
+## Ignore NuGet packages
+*.nupkg
+# NuGet v3 cache
+~/.nuget/packages
+# NuGet v2 cache
+~/.nuget
+packages/
+# The packages folder can be ignored because of Package Restore
+**/[Pp]ackages/*
+# except build/, which is used as an MSBuild target.
+!**/[Pp]ackages/build/
+# NuGet package dependency graphs
+*.gprops
+*.gtarget
+
+## Ignore test results
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+
+## Ignore runtime data
+pubs
+*.pubxml
+*.pubxml.user
+
+## Ignore logs
+logs
+*.log
+
+## Ignore IDE files
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.idea/
+.vs/
+.DS_Store
+
+## Ignore OS files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+## Ignore BenchmarkDotNet artifacts
+BenchmarkDotNet.Artifacts/
+
+## Ignore coverage results
+*.coverage
+*.coverlet-*
+
+## Ignore temporary files
+tmp/
+temp/
