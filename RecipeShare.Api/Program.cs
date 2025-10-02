@@ -19,7 +19,7 @@ var conn = builder.Configuration.GetConnectionString("DefaultConnection")
 if (!builder.Environment.IsEnvironment("Testing"))
 {
     builder.Services.AddDbContext<RecipeDbContext>(options =>
-        options.UseSqlServer(builder.Configuration.GetConnectionString(conn)));
+        options.UseSqlServer(conn));
 }
 
 var app = builder.Build();
@@ -43,5 +43,22 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+if (!app.Environment.IsEnvironment("Testing"))
+{
+    using (var scope = app.Services.CreateScope())
+    {
+        var db = scope.ServiceProvider.GetRequiredService<RecipeDbContext>();
+        try
+        {
+            db.Database.Migrate();
+            Console.WriteLine("Database migration completed successfully.");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Database migration failed: {ex.Message}");
+        }
+    }
+}
 
 public partial class Program { }
