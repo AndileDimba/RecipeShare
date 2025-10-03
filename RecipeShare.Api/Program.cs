@@ -14,6 +14,14 @@ builder.Services.AddSwaggerGen(c =>
     c.IncludeXmlComments(xmlPath);
 });
 
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(policy =>
+    {
+        policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+    });
+});
+
 var conn = builder.Configuration.GetConnectionString("DefaultConnection")
            ?? "Server=localhost,14333;Database=RecipeShareDb;User Id=sa;Password=Your_str0ng!Pass;TrustServerCertificate=True;";
 if (!builder.Environment.IsEnvironment("Testing"))
@@ -36,7 +44,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
+app.UseCors();
 
 app.UseAuthorization();
 
