@@ -25,7 +25,7 @@ namespace RecipeShare.Api.Controllers
         /// <returns>List of matching recipes.</returns>
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<IEnumerable<Recipe>>> GetAll([FromQuery] string? tag = null)
+        public async Task<ActionResult<IEnumerable<Recipe>>> GetAllRecipesAsync([FromQuery] string? tag = null)
         {
             var query = _db.Recipes.AsQueryable();
             if (!string.IsNullOrWhiteSpace(tag))
@@ -44,7 +44,7 @@ namespace RecipeShare.Api.Controllers
         [HttpGet("{id:int}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<Recipe>> Get(int id)
+        public async Task<ActionResult<Recipe>> GetRecipeByIdAsync(int id)
         {
             var r = await _db.Recipes.FindAsync(id);
             if (r == null) return NotFound();
@@ -59,7 +59,7 @@ namespace RecipeShare.Api.Controllers
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<Recipe>> Post([FromBody] Recipe recipe)
+        public async Task<ActionResult<Recipe>> CreateRecipeAsync([FromBody] Recipe recipe)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
@@ -78,7 +78,7 @@ namespace RecipeShare.Api.Controllers
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> Put(int id, [FromBody] Recipe recipe)
+        public async Task<IActionResult> UpdateRecipeAsync(int id, [FromBody] Recipe recipe)
         {
             if (id != recipe.Id) return BadRequest("ID mismatch.");
             if (!ModelState.IsValid) return BadRequest(ModelState);
@@ -99,7 +99,7 @@ namespace RecipeShare.Api.Controllers
         [HttpDelete("{id:int}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> DeleteRecipeAsync(int id)
         {
             var r = await _db.Recipes.FindAsync(id);
             if (r == null) return NotFound();
